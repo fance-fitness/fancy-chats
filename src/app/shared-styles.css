@@ -1,0 +1,149 @@
+.myPopup {
+  margin-top: 4%;
+  background-color: #333;
+  min-width: 100%
+}
+
+  @media screen and (max-width: 600px) {
+    .myPopup {
+      margin-top: 100%;
+    }
+  }
+
+a, h1, h2, h3, h4, h5, h6 {
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+}
+
+.container {
+  text-align: center;
+  padding-top: 5em
+}
+
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  .myIcon {
+    color: #ff0066;
+    padding-left: 0.5em
+  }
+
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  .dance-dropdown {
+    min-width: 100%;
+  }
+
+  #selectSection {
+    padding-top: 3em
+  }
+  .myTextArea {
+    text-align: center;
+    border: 8px;
+    border-style: solid;
+    border-color: #333;
+    border-width: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    min-width: 100%;
+    min-height: 3em;
+  }
+
+  .dance-input {
+    background-color: #ff0066;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    min-width: 100%;
+    min-height: 3em;
+    color: white
+  }
+
+  select, button {
+    min-width: 100%;
+    height: 2em;
+    color: white;
+    background-color: #ff0066;
+    font-weight: 500;
+    min-height: 3em;
+    padding-left: 1em;
+    text-align: center
+   }
+
+  option {
+    background-color: #ff0066;
+    padding-left: 1em;
+    margin-left: 1em;
+  }
+
+  .eventCard {
+    border: solid #000;
+    border-width: 1 10px;
+    border-color: #ff0066;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    text-align: center
+  }
+
+  .title {
+    padding-top: 1em;
+    color: #ff0066
+  }
+
+  .dateInput {
+    min-width: 100%;
+    height: 2em;
+    color: white;
+    background-color: #ff0066;
+    font-weight: 500;
+    min-height: 3em;
+    padding-left: 1em;
+  }
+
+  img {
+    width: 100%
+  }
+
+
+
+  .slidecontainer {
+    width: 100%;
+  }
+
+  .slider {
+    -webkit-appearance: none;
+    width: 90%;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #ff0066;
+    cursor: pointer;
+  }
+
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+  }

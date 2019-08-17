@@ -1,0 +1,82 @@
+<div
+  *ngIf="event"
+  class="eventCard"
+  (click)="event && event.secretId === '' ? htmlInsideModal.open() : ''"
+>
+  <div>
+    <h3 *ngIf="event.title !== ''" class="title">
+      {{ event.title }}
+      <br />
+      <p></p>
+    </h3>
+    <h6>
+      {{ getFacts() }}
+      <br />
+      <div *ngIf="!(getDistance() === 0) && positionIsClear">
+        <br />
+        ca. {{ getDistance() }} {{ texts.info.distanceUnitLong }} von Dir
+      </div>
+
+      <div *ngIf="!(getDistance() === 0) && !positionIsClear && cityIsChosen">
+          <br />
+          ca. {{ getDistance() }} {{ texts.info.distanceUnitLong }} von {{selectedCity}}
+        </div>
+
+    </h6>
+  </div>
+  <br />
+  <img src="{{ imgLink }}" alt="first slide" />
+  <p></p>
+  <a target="_blank" href="{{ event.link }}">{{ event.link }}</a>
+  <br /><br />
+</div>
+
+<modal #htmlInsideModal>
+  <ng-template #modalHeader>
+    <span style="text-align: center" class="myPopup">
+      <h2 style="text-align:center; color: #ff0066; padding-top: 0.4em">
+        {{ event.title }}
+      </h2>
+    </span>
+  </ng-template>
+  <ng-template #modalBody>
+    <!-- <p>{{texts.info.niceYouAreInterested}}</p> -->
+
+    <p *ngIf="reportedBecause !== ''">
+      Wir vertrauen darauf, dass unsere Nutzer angemessene Events erfassen.
+      Falls doch mal unangemessene oder falsche Daten hochgeladen werden, freuen
+      wir uns über zeitnahe Meldungen.<br />
+    </p>
+
+    <p *ngIf="reportedBecause === ''">
+      {{ texts.info.shareTheFollowingLinkWithFriends }}<br />
+      <a target="_blank" href="{{ eventLink }}">{{ eventLink }} </a>
+    </p>
+    <hr />
+    <p></p>
+    <p *ngIf="reportedBecause === ''">
+      <button (click)="findCompany()" type="submit" class="btn btn-success">
+        Begleitung Finden
+      </button>
+    </p>
+
+    <p></p>
+    <hr />
+    <p></p>
+
+    <textarea
+      class="myTextArea"
+      [(ngModel)]="reportedBecause"
+      placeholder="Falls mit diesem Event etwas nicht stimmt, teile uns das bitte hier mit."
+      name=""
+      id=""
+      cols="30"
+      rows="2"
+    ></textarea>
+    <p *ngIf="reportedBecause !== standardReportText">
+      <button (click)="report()">
+        Melden
+      </button>
+    </p>
+  </ng-template>
+</modal>

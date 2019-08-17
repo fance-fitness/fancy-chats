@@ -1,0 +1,105 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div *ngIf="mode !== 'maintain'">
+    <div *ngIf="infoToUser !== '' && infoToUser !== nothingFoundText">
+      <h1 style="color: #ff0066; text-align: center; padding-top: 20%">
+        {{ infoToUser }}
+      </h1>
+    </div>
+
+    <span *ngIf="infoToUser === '' || infoToUser === nothingFoundText">
+      <div>
+        <section id="selectSection">
+          <select
+            [(ngModel)]="selectedDance"
+            (change)="retrieveRelevantEvents(true)"
+          >
+            <option *ngFor="let dance of dances" value="{{ dance }}">
+              {{ dance }}
+            </option>
+          </select>
+
+          ´
+          <div *ngIf="selectedDance !== selectDanceText">
+            <select
+              [(ngModel)]="selectedCity"
+              (change)="retrieveRelevantEvents(true)"
+            >
+              <input
+                type="range"
+                min="1000"
+                max="400000"
+                class="slider"
+                [(ngModel)]="minPop"
+                (change)="updateCityNames()"
+              />
+
+              <p></p>
+              <option *ngFor="let cityName of cityNames" value="{{ cityName }}">
+                {{ cityName }}
+              </option>
+            </select>
+
+            <span *ngIf="selectedCity !== selectCityText">
+              <p><br /></p>
+              {{ selectedCity }} und Umgebung bis {{ myRange }}
+              {{ texts.info.distanceUnitShort }}
+              <p></p>
+              <input
+                type="range"
+                min="0"
+                max="1000"
+                class="slider"
+                [(ngModel)]="myRange"
+                (change)="retrieveRelevantEvents(true)"
+              />
+            </span>
+          </div>
+
+          <p><br /></p>
+        </section>
+
+        <section id="eventsSection">
+          <p></p>
+          <div *ngFor="let event of relevantEvents">
+
+            <app-event-card *ngIf="selectedDance !== selectDanceText" [event]="event" [selectedCity]=selectedCity [positionIsClear]=positionIsClear [cityIsChosen]=true></app-event-card>
+            <app-event-card *ngIf="selectedDance === selectDanceText" [event]="event" [selectedCity]=selectedCity [positionIsClear]=positionIsClear [cityIsChosen]=false></app-event-card>
+            <p><br /></p>
+            <p><br /></p>
+            <p><br /></p>
+            <p><br /></p>
+          </div>
+
+          <div
+            *ngIf="
+              relevantEvents.length === 0 ||
+              infoToUser === 'Live, Love, Dance, Sing'
+            "
+          >
+            <p><br /></p>
+            {{ infoToUser }}
+            <p></p>
+          </div>
+        </section>
+
+        <span *ngIf="relevantEvents.length > 0">
+          <hr />
+          <p><br /></p>
+          Was möchtest Du als Nächstes machen? <br />
+          <p><br /></p>
+          <button
+            (click)="clickNewEvent()"
+            type="submit"
+            class="btn btn-success"
+          >
+            {{ texts.info.createNewEvent }}
+          </button>
+
+          <app-footer></app-footer>
+        </span>
+      </div>
+    </span>
+  </div>
+</div>

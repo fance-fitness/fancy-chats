@@ -1,0 +1,108 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <p><br></p>
+  <h3 class="title">
+    Administration
+  </h3>
+  <p><br></p>
+  <div *ngIf="eventsWithSecrets && eventsWithSecrets.length===0">
+
+    <input class="dance-input" type="text" [(ngModel)]="adminKey" autofocus>
+    <p><br></p>
+    <button (click)="go()">Go</button>
+  </div>
+
+  <div *ngIf="eventsWithSecrets && eventsWithSecrets.length>0">
+    <p></p>
+    <button (click)="triggerConsistencyCheck()">
+      Trigger Consistency Check
+    </button>
+
+    <p></p>
+    <button (click)="reloadConfiguration()">
+      Reload Configuration
+    </button>
+
+    <p></p>
+    <button (click)="displayReportedEvents()">
+      Gemeldete Events
+    </button>
+
+    <p></p>
+    <button (click)="triggerBackup()">
+      Trigger Backup
+    </button>
+
+    <p></p>
+    <button (click)="findDuplicates()">
+      Find Duplicates
+    </button>
+
+    <p></p>
+    <button (click)="fetchDataFromSystem()">
+      Fetch Data From System
+    </button>
+
+    <p></p>
+    <a target="_blank" href="http://localhost:4200/?eventId=1564987031899">
+      <button>
+        Test specific
+      </button>
+    </a>
+    <p></p>
+    <a target="_blank" href={{getTestMaintainUrl()}}>
+      <button>
+        Test maintain
+      </button>
+    </a>
+
+    <p><br></p>
+  </div>
+
+    <div *ngFor="let event of eventsWithSecrets">
+    <app-event-card [event]="event"></app-event-card>
+    <p><br></p>
+    Maintainance Link: <br>
+    <a target="_blank" href={{getMaintainLink(event)}}>{{getMaintainLink(event)}}</a>
+    <p><br></p>
+    <hr>
+    <div *ngIf='event.reviewed===""'>
+      <button (click)="confirmReview(event)">
+        Erfolgreich geprüft
+      </button>
+      <p><br></p>
+      <hr>
+    </div>
+
+    <div *ngIf='event.date.split(",").length>1'>
+      Momentan Letzter Termin: {{event.date.split(",")[event.date.split(",").length - 1]}}
+        <button (click)="extendDatesRange(event)">
+          Verlängern
+        </button>
+        <p><br></p>
+        <hr>
+      </div>
+
+    <div *ngIf='event.reviewed!==""'>
+      Already {{event.reviewed}}
+      <p><br></p>
+      <hr>
+    </div>
+
+    <div *ngIf="event.reportedBecause!==''">
+      Reported because: {{event.reportedBecause}}
+      <p></p>
+      <button (click)="deleteReport(event)">
+        Delete Report
+      </button>
+      <hr>
+    </div>
+
+    <br>
+    <p><br></p>
+    <hr>
+
+    <p><br></p>
+  </div>
+</div>
