@@ -9,7 +9,9 @@
     </div>
   </div>
   <div class="input-message">
-    <textarea class="input-text-message" [(ngModel)]="textInput" placeholder="Type text here" (keyup)="onKey($event)"></textarea>
-    <i class="fa fa-paper-plane fa-2x input-send" aria-hidden="true" (click)="sendTextInput()"></i>
+    <textarea class="input-text-message" [(ngModel)]="textInput" placeholder="Bitte seid lieb zueinander :)" (keyup)="onKey($event)" autofocus></textarea>
+    <span class="fancy-send-symbol">
+      <i class="fa fa-paper-plane fa-2x input-send fancy-send-symbol" aria-hidden="true" (click)="sendTextInput()"></i>
+    </span>
   </div>
 </div>

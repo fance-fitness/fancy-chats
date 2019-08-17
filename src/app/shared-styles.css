@@ -1,8 +1,33 @@
+.fancyChat{
+  margin: auto;
+  padding-top: 7em;
+  padding-left: 10%
+}
+
+.fancy-send-symbol {
+  padding-left: 1%;
+  align-content: right;
+  align-items: right;
+  text-align: right;
+  color: #ff0066
+}
+
+@media screen and (min-width: 800px) {
+  .fancyChat{
+    width: 30%;
+    padding-left: 0%
+  }
+  .fancy-send-symbol {
+    padding-left: 3%;
+  }
+}
+
 .myPopup {
   margin-top: 4%;
   background-color: #333;
   min-width: 100%
 }
+
 
   @media screen and (max-width: 600px) {
     .myPopup {

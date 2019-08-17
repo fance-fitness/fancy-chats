@@ -3,18 +3,17 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-fancy-chat-box',
   templateUrl: './fancy-chat-box.component.html',
-  styleUrls: ['./fancy-chat-box.component.css']
+  styleUrls: ['./fancy-chat-box.component.css', '../shared-styles.css']
 })
 export class FancyChatBoxComponent implements OnInit {
-
   @Input() messages: any[];
-  @Input() colorBackRight = '#007bff';
-  @Input() colorFontRight = '#ffffff';
-  @Input() colorBackLeft = '#f8f9fa';
-  @Input() colorFontLeft = '#343a40';
-  @Input() width = '300px';
-  @Input() height = '550px';
-  @Input() border = '1px solid black';
+  @Input() colorBackRight;
+  @Input() colorFontRight;
+  @Input() colorBackLeft;
+  @Input() colorFontLeft;
+  @Input() width;
+  @Input() height;
+  @Input() border;
 
   @Output() inputSent = new EventEmitter<string>();
 

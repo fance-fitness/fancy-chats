@@ -13,11 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ContactComponent } from './contact/contact.component';
-import { TypeaheadModule } from 'ngx-type-ahead';
 import { ModalModule } from 'angular-custom-modal';
 import { AdminComponent } from './admin/admin.component';
-import { FancyChatComponent } from './fancy-chat/fancy-chat.component';
-import { ChatModule } from 'ng-ui-chat';
 import { FancyChatBoxComponent } from './fancy-chat-box/fancy-chat-box.component';
 import { FancyChatMessageComponent } from './fancy-chat-message/fancy-chat-message.component';
 
@@ -31,7 +28,6 @@ import { FancyChatMessageComponent } from './fancy-chat-message/fancy-chat-messa
     NavbarComponent,
     ContactComponent,
     AdminComponent,
-    FancyChatComponent,
     FancyChatBoxComponent,
     FancyChatMessageComponent,
   ],
@@ -41,15 +37,13 @@ import { FancyChatMessageComponent } from './fancy-chat-message/fancy-chat-messa
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    TypeaheadModule,
     AngularFileUploaderModule,
-    ChatModule,
     CarouselModule.forRoot(),
     ModalModule,
     BsDropdownModule.forRoot()
   ],
   providers: [],
-  exports: [ChatModule],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,3 @@
-import { TypeaheadSettings } from 'ngx-type-ahead';
 
 export const appId = 'dancePlanner';
 export interface IInfo {
@@ -75,23 +74,6 @@ export interface ICity {
   lat: number;
   lon: number;
 }
-
-export const typeAheadSettings: TypeaheadSettings = {
-  /** how much should be user's typing debounced */
-  typeDelay: 10, // Default is `50`
-  /** maximal number of visible items in dropdown. If value is 0, list will not be limited */
-  suggestionsLimit: 10, // Default is `10`
-  /** text shown when there are no matches */
-  noMatchesText: 'Keine Stadt gefunden', // Default is `No matches found`
-
-  /** css classes for parts of type-ahead */
-  tagClass: 'btn badge badge-primary', // Default is ``
-  tagRemoveIconClass: '', // Default is ``
-  dropdownMenuClass: 'dropdown-menu', // Default is `dropdown-menu`
-  dropdownMenuExpandedClass: 'dropdown-menu show dance-dropdown', // Default is `dropdown-menu show`
-  dropdownMenuItemClass: 'dropdown-item', // Default is `dropdown-item`
-  dropdownToggleClass: 'dropdown-toggle' // Default is ``
-};
 
 export const initialRange = 700;
 export const maxRange = 1000;
