@@ -18,8 +18,8 @@ export class NavbarComponent {
   public adminkey = '';
 
   constructor(public router: Router) {
-    this.titleLong = 'Fancy Dance Planner';
-    this.titleShort = 'Dance Planner';
+    this.titleLong = 'Fancy Chats';
+    this.titleShort = 'Fancy Chats';
 
 
   }

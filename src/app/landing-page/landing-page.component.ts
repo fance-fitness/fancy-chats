@@ -53,7 +53,7 @@ export class LandingPageComponent implements OnInit {
   public mode: string;
   public numberOfLocationDetectionTrials = 0;
   // public infosToUser: string [] = ['Live', 'Love', 'Dance', 'Fance'];
-  public infosToUser: string[] = ['Get', 'ready', 'to', 'dance'];
+  public infosToUser: string[] = ['Get', 'ready', 'to', 'chat'];
   public infoToUser = this.infosToUser[0];
   public citiesRaw;
   public params;

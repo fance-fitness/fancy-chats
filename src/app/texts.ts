@@ -3,8 +3,8 @@ import { ITexts } from './types';
 export const texts: ITexts[] = [{
     language: 'german',
     info: {
-        shortTitleOfTheApp: 'Dance Planner',
-        longTitleOfTheApp: 'Fancy Dance Planner',
+        shortTitleOfTheApp: 'Fancy Chats',
+        longTitleOfTheApp: 'Fancy Chats',
         location: 'Möchtest Du Tanzevents in Deiner Nähe finden?. Falls ja gib mir bitte 4 Sekunden. Falls Die Seite dann nicht automatisch neu lädt, kann ich aus irgendeinem Grund Deine Position auf der Erde nicht ermitteln.',
         chooseDanceStyle: 'Was möchtest Du tanzen?',
         chooseCity: 'Wo möchtest Du tanzen?',
@@ -39,8 +39,8 @@ export const texts: ITexts[] = [{
 }, {
     language: 'english',
     info: {
-        shortTitleOfTheApp: 'Dance Planner',
-        longTitleOfTheApp: 'Fancy Dance Planner',
+        shortTitleOfTheApp: 'Fancy Chats',
+        longTitleOfTheApp: 'Fancy Chats',
         location: '',
         chooseDanceStyle: 'Click to choose a dance style',
         chooseCity: 'Click to choose a city',

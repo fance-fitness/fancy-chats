@@ -14,7 +14,7 @@ export class FooterComponent {
   public titleShort;
 
   public constructor(public router: Router) {
-    this.titleLong = 'Fancy Dance Planner';
+    this.titleLong = 'Fancy Chats';
     this.titleShort = 'Dance Planner';
   }
 

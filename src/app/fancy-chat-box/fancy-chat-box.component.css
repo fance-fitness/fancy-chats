@@ -1,0 +1,36 @@
+.chat-container {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    padding-top: 15px;
+  }
+  .list-messages {
+    display: flex;
+    flex-direction: column;
+    height: 88%;
+    overflow: auto;
+  }
+  .left-message {
+    display: flex;
+    margin-left: 10px;
+  }
+  .right-message {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+  }
+  .input-message {
+    border-top: 2px solid grey;
+    height: 12%;
+  }
+  .input-text-message {
+    border-left: 2px solid grey;
+    height: 100%;
+    width: 80%;
+  }
+  .input-send {
+    color: #007bff;
+    position: relative;
+    left: 7px;
+    top: -22px;
+  }

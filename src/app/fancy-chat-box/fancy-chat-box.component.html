@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<div [ngStyle]="{'width': width, 'height': height, 'border': border}" class="chat-container">
+  <div class="list-messages">
+    <div *ngFor="let message of messages">
+      <app-fancy-chat-message class="message" [text]="message.text" [date]="message.date" [colorBackRight]="colorBackRight" [colorFontRight]="colorFontRight"
+      [colorBackLeft]="colorBackLeft" [colorFontLeft]="colorFontLeft" [owner]="message.userOwner"
+      [ngClass]="{'left-message': !message.userOwner, 'right-message': message.userOwner}"></app-fancy-chat-message>
+    </div>
+  </div>
+  <div class="input-message">
+    <textarea class="input-text-message" [(ngModel)]="textInput" placeholder="Type text here" (keyup)="onKey($event)"></textarea>
+    <i class="fa fa-paper-plane fa-2x input-send" aria-hidden="true" (click)="sendTextInput()"></i>
+  </div>
+</div>

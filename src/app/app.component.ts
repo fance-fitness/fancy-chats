@@ -14,7 +14,7 @@ export class AppComponent {
   public titleShort;
 
   public constructor() {
-    this.titleLong = 'Fancy Dance Planner';
+    this.titleLong = 'Fancy Chats';
     this.titleShort = 'Dance Planner';
   }
 

@@ -16,6 +16,10 @@ import { ContactComponent } from './contact/contact.component';
 import { TypeaheadModule } from 'ngx-type-ahead';
 import { ModalModule } from 'angular-custom-modal';
 import { AdminComponent } from './admin/admin.component';
+import { FancyChatComponent } from './fancy-chat/fancy-chat.component';
+import { ChatModule } from 'ng-ui-chat';
+import { FancyChatBoxComponent } from './fancy-chat-box/fancy-chat-box.component';
+import { FancyChatMessageComponent } from './fancy-chat-message/fancy-chat-message.component';
 
 
 @NgModule({
@@ -26,7 +30,10 @@ import { AdminComponent } from './admin/admin.component';
     EventCardComponent,
     NavbarComponent,
     ContactComponent,
-    AdminComponent
+    AdminComponent,
+    FancyChatComponent,
+    FancyChatBoxComponent,
+    FancyChatMessageComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,11 +43,13 @@ import { AdminComponent } from './admin/admin.component';
     HttpClientModule,
     TypeaheadModule,
     AngularFileUploaderModule,
+    ChatModule,
     CarouselModule.forRoot(),
     ModalModule,
     BsDropdownModule.forRoot()
   ],
   providers: [],
+  exports: [ChatModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
