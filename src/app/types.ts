@@ -79,13 +79,8 @@ export const initialRange = 700;
 export const maxRange = 1000;
 
 export enum mode {
-  // rangeBased = 'rangeBased',
-  // cityBased = 'cityBased',
-  chatRedirect = 'chatRedirect',
-  //  maintain = 'maintain',
+  common = 'common',
   specific = 'specific',
-  straightForward = 'straightForward',
-  maintain = 'maintain'
 }
 
 export const dances = [

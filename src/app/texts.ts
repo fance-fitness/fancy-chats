@@ -21,7 +21,7 @@ export const texts: ITexts[] = [{
         hereYouFindTheTelegramGroup: 'Hier gelangst Du zur Telegram Gruppe:',
         createNewEvent: 'Neues Event anlegen',
         createNewVersion: 'Event aktualisieren',
-        createEvents: 'Events anlegen',
+        createEvents: 'Chat anlegen',
         contact: 'Kontakt aufnehmen',
         danceAndMusicStyle: 'Tanz- und Musik- Stil',
         date: 'Datum',

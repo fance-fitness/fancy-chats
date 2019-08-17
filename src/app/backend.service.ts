@@ -6,6 +6,8 @@ import { IEvent } from './types';
   providedIn: 'root'
 })
 export class BackendService {
+
+  public constructor(private http: HttpClient) { }
   public static planBBackendURL = 'https://fance-stiftung.de/';
 
   // public static backendURL = 'https://dance-planner.com/';
@@ -20,8 +22,10 @@ export class BackendService {
       'Content-Type': 'application/json'
     })
   };
-
-  public constructor(private http: HttpClient) { }
+  public getChat(chatId: string): any {
+    const url = `${BackendService.backendURL}api/chats/getChat/chatId/${chatId}`;
+    return this.http.get(url);
+  }
 
   public getEvents(): any {
     return this.http.get(`${BackendService.backendURL}api/events/getEvents`);

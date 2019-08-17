@@ -8,9 +8,11 @@
   </div>
 <div *ngIf="!owner" class="content-message left-content">
     <p><br></p>
-    <p [ngStyle]="{'background-color': colorBackLeft, 'color': colorFontLeft}">
+    <p [ngStyle]="{'background-color': colorBackLeft, 'color': colorFontLeft}" class="fancy-text-left">
         {{text}}
-    </p>
-    <br>
-    {{date}}
+      </p>
+      <br>
+    <span class="fancy-date-info-left">
+      {{date}}
+    </span>
 </div>

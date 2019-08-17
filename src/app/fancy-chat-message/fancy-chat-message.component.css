@@ -11,3 +11,11 @@ p {
   padding: 5px;
   border-radius: 10px;
 }
+
+.fancy-date-info-left {
+  padding-left: 1em
+}
+
+.fancy-text-left {
+  margin-top: 2em
+}
