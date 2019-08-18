@@ -11,13 +11,13 @@ export class BackendService {
   public constructor(private http: HttpClient) { }
 
 
-  // public static planBBackendURL = 'https://fance-stiftung.de/';
-  // public static backendURL = 'https://art-consulting.org/';
-  // public static frontendURL = 'https://dance-planner.de/';
+  public static planBBackendURL = 'https://fance-stiftung.de/';
+  public static backendURL = 'https://art-consulting.org/';
+  public static frontendURL = 'https://dance-planner.de/';
 
-  public static planBBackendURL = 'http://localhost:3000/';
-  public static backendURL = 'http://localhost:3000/';
-  public static frontendURL = 'http://localhost:4200/';
+  // public static planBBackendURL = 'http://localhost:3000/';
+  // public static backendURL = 'http://localhost:3000/';
+  // public static frontendURL = 'http://localhost:4200/';
 
 
 
