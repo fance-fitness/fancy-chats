@@ -11,7 +11,7 @@ export class AuthenticationService {
 
   public isFriend(answer?: string) {
     if (answer) {
-      AuthenticationService.isUserAFriend = (answer === this.korrekteAntwort) ? true : false;
+      AuthenticationService.isUserAFriend = (answer.toLowerCase().indexOf(this.korrekteAntwort) !== -1 ) ? true : false;
       return AuthenticationService.isUserAFriend;
     } else {
       return AuthenticationService.isUserAFriend;
