@@ -8,6 +8,7 @@ const routes: Routes = [
 
     { path: 'contact', component: ContactComponent },
     { path: 'admin', component: AdminComponent },
+    { path: 'specific', component: LandingPageComponent },
     { path: '', component: LandingPageComponent }
 ];
 

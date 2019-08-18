@@ -55,7 +55,8 @@ export class FancyChatBoxComponent implements OnInit {
       const chatForUpdate = Object.assign({}, this.chat);
       chatForUpdate.messages = [newMessage];
 
-      this.backendService.addMessage(chatForUpdate).subscribe(result => {
+      this.backendService.addMessage(chatForUpdate)
+      .subscribe((result) => {
         if (result.success) {
           // alert('Geilo. Das hat geklappt.');
         } else {

@@ -13,20 +13,27 @@
   ></app-fancy-chat-box>
 </div>
 
-<div *ngIf="infoToUser!==''"  class="container">
+<div *ngIf="mode !== 'specific' && infoToUser!==''"  class="container">
 <h3 class="title">
     {{ infoToUser }}
   </h3>
 </div>
+
 <div *ngIf="mode === 'common' && this.infoToUser === ''" class="container">
   <h3 class="title">Fancy Chats<br /></h3>
+
   <h5 class="infoToUser">
-    Diese Plattform bietet einen allgemeinen Chat Service.
-    <p></p>
-    <br />
-    Dieser wird typischerweise von verschiedenen Event Plattformen genutzt.
-    <p><br /></p>
-    Allen voran natürlich vom
-    <a href="https://dance-planner.de">https://dance-planner.de</a>.
+    Was möchtes Du tun?
   </h5>
+<p><br></p>
+  <button (click)="createChat()">
+    Einen Chat anlegen
+  </button>
+  <p><br></p>
+  <a target="_blank" href="https://dance-planner.de">
+    <button>
+      Fancy Events finden
+    </button>
+  </a>
+
 </div>

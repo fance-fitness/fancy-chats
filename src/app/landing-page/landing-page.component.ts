@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { mode } from '../types';
+import * as nanoid from 'nanoid';
+import { BackendService } from '../backend.service';
 
 export interface IMessage {
   text: string;
@@ -11,6 +13,7 @@ export interface IMessage {
 export interface IChat {
   id: string;
   messages: IMessage[];
+  reportedBecause: string;
 }
 
 @Component({
@@ -27,7 +30,9 @@ export class LandingPageComponent implements OnInit {
   public messages = [];
 
 
-  public constructor(private activatedRoute: ActivatedRoute) {}
+  public constructor(private activatedRoute: ActivatedRoute,
+                     private backendService: BackendService,
+                     private router: Router) {}
 
   public ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -47,4 +52,21 @@ export class LandingPageComponent implements OnInit {
     });
   }
 
+  public createChat() {
+    const newChat: IChat = {
+      id: nanoid().substring(14),
+      messages: [],
+      reportedBecause: ''
+    };
+
+    this.backendService.createChat(newChat)
+    .subscribe((result) => {
+      if (result.success) {
+         alert('Geilo. Das hat geklappt.');
+         this.router.navigateByUrl(`specific?chatId=${newChat.id}`);
+      } else {
+        alert('Etwas ist schiefgelaufen.');
+      }
+    });
+  }
 }

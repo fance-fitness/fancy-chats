@@ -43,4 +43,17 @@ export class BackendService {
     const url = `${BackendService.backendURL}api/chats/getChat/chatId/${chatId}`;
     return this.http.get(url);
   }
+
+  public createChat(chat: IChat): any {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+
+    const url = `${BackendService.backendURL}api/chats/createChat`;
+    // alert(`posting to ${url} for chat id: ${chat.id}`);
+    return this.http.post<IEvent>(url, JSON.stringify(chat), httpOptions);  }
+
 }
