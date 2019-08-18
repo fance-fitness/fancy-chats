@@ -59,19 +59,9 @@ export class EventCardComponent implements OnInit {
   }
 
   public report() {
-    if (confirm(`Bist Du sicher, dass Du dieses Event mit der Nachricht "${this.reportedBecause}" melden möchtest?`)) {
+    if (confirm(`Bist Du sicher, dass Du diesen Chat mit der Nachricht "${this.reportedBecause}" melden möchtest?`)) {
       this.event.reportedBecause = this.reportedBecause;
 
-      this.backendService.reportEvent(this.event)
-        .subscribe((result) => {
-          if (result.success) {
-            alert('Danke für Deine Nachricht. Wir werden das Event zeitnah prüfen.');
-            const comingHome = BackendService.frontendURL;
-            document.location.href = comingHome;
-          } else {
-            alert('Es gab ein technisches Problem. Bitte kontaktiere uns per E-Mail an info@dance-planner.de');
-          }
-        });
     }
   }
 

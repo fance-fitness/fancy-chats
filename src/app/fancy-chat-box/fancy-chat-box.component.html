@@ -8,7 +8,7 @@
       [ngClass]="{'left-message': !message.userOwner, 'right-message': message.userOwner}"></app-fancy-chat-message>
     </div>
   </div>
-  <div class="input-message">
+  <div *ngIf="chat" class="input-message">
     <textarea class="input-text-message" [(ngModel)]="textInput" placeholder="Bitte seid lieb zueinander :)" (keyup)="onKey($event)" autofocus></textarea>
     <span class="fancy-send-symbol">
       <i class="fa fa-paper-plane fa-2x input-send fancy-send-symbol" aria-hidden="true" (click)="sendTextInput()"></i>

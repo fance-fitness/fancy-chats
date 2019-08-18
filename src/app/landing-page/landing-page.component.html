@@ -2,15 +2,14 @@
 
 <div *ngIf="mode === 'specific'" class="fancyChat">
   <app-fancy-chat-box
-    [messages]="messages"
     [colorBackRight]="'#333'"
     [colorFontRight]="'white'"
     [colorBackLeft]="'#333'"
     [colorFontLeft]="'white'"
-    (inputSent)="onInputReceived($event)"
     [width]="'90%'"
     [height]="'500px'"
     [border]="'1px solid black'"
+    [chatId]=chatId
   ></app-fancy-chat-box>
 </div>
 
