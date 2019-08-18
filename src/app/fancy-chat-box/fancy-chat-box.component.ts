@@ -1,11 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IChat } from '../landing-page/landing-page.component';
+import { IChat, IMessage } from '../landing-page/landing-page.component';
 import { BackendService } from '../backend.service';
 import * as moment from 'moment';
 
-import { Router } from '@angular/router';
-import { ChatService } from '../chat.service';
 import { AuthenticationService } from '../authentication.service';
+import { IEvent } from '../types';
 
 
 @Component({
@@ -14,7 +13,6 @@ import { AuthenticationService } from '../authentication.service';
   styleUrls: ['./fancy-chat-box.component.css', '../shared-styles.css']
 })
 export class FancyChatBoxComponent implements OnInit {
-  @Input() messages: any[];
   @Input() chatId;
 
   @Output() inputSent = new EventEmitter<string>();
@@ -35,31 +33,67 @@ export class FancyChatBoxComponent implements OnInit {
   public textInput = '';
 
   public constructor(private backendService: BackendService,
-                     private chatService: ChatService,
                      private authenticationService: AuthenticationService) {}
 
   public ngOnInit() {
     this.isUserAFriend = this.authenticationService.isFriend();
     this.loadChat();
+    setInterval(() => {
+      this.loadChat();
+    }, 30000);
+
   }
 
   public getChatLink() {
-    return `${BackendService.frontendURL}?chatId=${this.chatId}`;
+    return `${BackendService.frontendChatURL}?chatId=${this.chatId}`;
   }
+
   public loadChat() {
     this.backendService.getChat(this.chatId)
     .subscribe((chat: IChat) => {
-      if (chat) {
-        this.chat = chat;
-        this.messages = this.chat.messages;
-        setInterval(() => {
-          this.loadChat();
-        }, 30000);
-
+      if (chat === undefined || chat === null) {
+        this.createNewChatWithThisId();
       } else {
-
-        this.chatService.createChat(this.chatId);
+        this.chat = chat;
       }
+
+    });
+  }
+
+  public createNewChatWithThisId(): any {
+
+    this.backendService.getEvents().subscribe((events: IEvent[]) => {
+
+      let welcomeMessage: IMessage;
+      if (events.filter((entry: IEvent) => entry.id === this.chatId)[0]) {
+        welcomeMessage = {
+          text: `Willkommen im Chat zum Event mit der ID: ${this.chatId}. Liebe Grüße vom fancy Administrator.`,
+          date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+          userOwner: true
+        };
+      } else {
+        welcomeMessage = {
+          text: `Willkommen im Chat. Liebe Grüße vom fancy Administrator.`,
+          date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+          userOwner: true
+        };
+      }
+
+      this.chat = {
+        id: this.chatId,
+        messages: [welcomeMessage],
+        reportedBecause: ''
+      };
+
+      this.backendService.createChat(this.chat).subscribe(result => {
+        if (result.success) {
+          // no need for action
+        } else {
+          alert('Etwas ist schiefgelaufen.');
+        }
+      });
+
+
     });
   }
 
@@ -75,7 +109,7 @@ export class FancyChatBoxComponent implements OnInit {
         date: moment().format('MMMM Do YYYY, h:mm:ss a'),
         userOwner: true
       };
-      this.messages.push(newMessage);
+      this.chat.messages.push(newMessage);
 
       const chatForUpdate = Object.assign({}, this.chat);
       chatForUpdate.messages = [newMessage];

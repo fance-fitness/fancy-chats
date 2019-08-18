@@ -14,6 +14,7 @@ export class BackendService {
   public static planBBackendURL = 'https://fance-stiftung.de/';
   public static backendURL = 'https://art-consulting.org/';
   public static frontendURL = 'https://dance-planner.de/';
+  public static frontendChatURL = 'https://fancy-chats.com/';
 
   // public static planBBackendURL = 'http://localhost:3000/';
   // public static backendURL = 'http://localhost:3000/';
@@ -26,6 +27,10 @@ export class BackendService {
       'Content-Type': 'application/json'
     })
   };
+
+  public getEvents(): any {
+    return this.http.get(`${BackendService.backendURL}api/events/getFutureEvents`);
+  }
 
   public addMessage(chat: IChat): any {
     const httpOptions = {

@@ -14,27 +14,24 @@
   <p></p>
   <!-- Bitte halte Dich an die <a target="_blank" href="">Regeln</a>  dieser Plattform. -->
   <div [ngStyle]="{ width: width, height: height, border: border }">
-    <div class="list-messages">
-      <div *ngFor="let message of messages">
-        {{messages.indexOf(message)}}
+    <div *ngIf="chat" class="list-messages">
+      <div *ngFor="let message of chat.messages">
+        <br />
+        <div style="margin-top: 1em">
 
-        <div>
-          <p></p>
-          <span *ngIf="messages.indexOf(message)%2===0" style="background-color: #333; color: white; padding: 1em">
-            {{ message.text }}
-          </span>
-          <span *ngIf="messages.indexOf(message)%2===1" style="background-color: #ff0066; color: white; padding: 1em">
+        <div *ngIf="chat.messages.indexOf(message)%2===0" style="background-color: #333; color: white; padding: 1em; margin: 1em">
+
               {{ message.text }}
-            </span>
-
-          <br />
-          <div style="margin-top: 1em">
-              {{ message.date }}
           </div>
-          <p></p>
+          <div *ngIf="chat.messages.indexOf(message)%2===1" style="background-color: #ff0066; color: white; padding: 1em; margin: 1em">
+              {{ message.text }}>
+          </div>
+          {{ message.date }}
         </div>
+        <p></p>
       </div>
     </div>
+
     <div *ngIf="chat" class="input-message">
       <textarea
         class="input-text-message"

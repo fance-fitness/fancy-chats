@@ -27,7 +27,7 @@
     </button>
   </div>
 
-  <div *ngIf="isUserAFriend === true">
+  <div *ngIf="isUserAFriend === true && chatId">
     <app-fancy-chat-box [chatId]="chatId"></app-fancy-chat-box>
   </div>
 </div>

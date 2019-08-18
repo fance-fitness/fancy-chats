@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { mode } from '../types';
-import { ChatService } from '../chat.service';
-import { AuthenticationService } from '../authentication.service';
+import * as nanoid from 'nanoid';
 
 export interface IMessage {
   text: string;
@@ -29,7 +27,6 @@ export class LandingPageComponent implements OnInit {
   public messages = [];
 
   public constructor(private activatedRoute: ActivatedRoute,
-                     private chatService: ChatService,
                      private router: Router) {}
 
   public ngOnInit() {
@@ -51,7 +48,7 @@ export class LandingPageComponent implements OnInit {
   }
 
 
-  public createChat() {
-    this.chatService.createChat();
+  public createChatFromLandingPage() {
+    this.router.navigateByUrl(`/specific?chatId=${nanoid()}`);
   }
 }
