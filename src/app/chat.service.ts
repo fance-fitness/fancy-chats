@@ -1,38 +1,53 @@
 import { Injectable } from '@angular/core';
+import * as nanoid from 'nanoid';
+import { IChat } from './landing-page/landing-page.component';
+import { BackendService } from './backend.service';
+import { Router } from '@angular/router';
+import { EventsService } from './events.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
-  constructor() { }
+  constructor(private backendService: BackendService,
+              private router: Router,
+              private eventService: EventsService) { }
 
+  private isLegitimate() {
+    return true;
+  }
 
-  public redirect(input: string): any {
+  public createChat(chatId?: string) {
+    let chat: IChat;
 
-    switch (input.toLowerCase()) {
-      case 'monday':
-        document.location.href = 'https://chat.whatsapp.com/CBU73BL7SptJDf3p1R5mMq';
-        break;
-      case 'tuesday':
-        document.location.href = 'https://chat.whatsapp.com/IDQQisk7vUzAHHgF1UM7To';
-        break;
-      case 'wednesday':
-        document.location.href = 'https://chat.whatsapp.com/Gvz4aq6Jvgq6elxNRKnbc4';
-        break;
-      case 'thursday':
-        document.location.href = 'https://chat.whatsapp.com/GhqSHLSGMF7L06DnsWPxYr';
-        break;
-      case 'friday':
-        document.location.href = 'https://chat.whatsapp.com/Epx3YNiXdrFC0dYHF6BnA8';
-        break;
-      case 'saturday':
-        document.location.href = 'https://chat.whatsapp.com/Is6qY0QZ0WHLA83yoDVJWp';
-        break;
-      case 'sunday':
-        document.location.href = 'https://chat.whatsapp.com/KGe9ZxqVTg77DNvORCONol';
-        break;
-      default: document.location.href = 'https://dance-planner.de';
+    if (chatId) {
+      if (this.isLegitimate()) {
+
+        chat = {
+          id: chatId,
+          messages: [],
+          reportedBecause: ''
+        };
+      } else {
+        alert('Dieser Chat scheint veraltet');
+      }
+    } else {
+      chat = {
+        id: nanoid().substring(14),
+        messages: [],
+        reportedBecause: ''
+      };
     }
 
-  }
+    this.backendService.createChat(chat)
+      .subscribe(result => {
+        if (result.success) {
+          this.router.navigateByUrl(`/specific?chatId=${chat.id}`);
+        } else {
+          alert('Etwas ist schiefgelaufen.');
+        }
+      });
+    }
+
+
 }

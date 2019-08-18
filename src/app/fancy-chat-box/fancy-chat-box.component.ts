@@ -3,6 +3,11 @@ import { IChat } from '../landing-page/landing-page.component';
 import { BackendService } from '../backend.service';
 import * as moment from 'moment';
 
+import { Router } from '@angular/router';
+import { ChatService } from '../chat.service';
+import { AuthenticationService } from '../authentication.service';
+
+
 @Component({
   selector: 'app-fancy-chat-box',
   templateUrl: './fancy-chat-box.component.html',
@@ -10,6 +15,9 @@ import * as moment from 'moment';
 })
 export class FancyChatBoxComponent implements OnInit {
   @Input() messages: any[];
+  @Input() chatId;
+
+  @Output() inputSent = new EventEmitter<string>();
 
   public colorBackRight = '#333';
   public colorFontRight = 'white';
@@ -18,33 +26,45 @@ export class FancyChatBoxComponent implements OnInit {
   public width = '90%';
   public height = '500px';
   public border = '1px solid black';
-
-  @Input() chatId;
+  public isUserAFriend = false;
+  public gegebeneAntwort = '';
 
   public chat: IChat;
 
-  @Output() inputSent = new EventEmitter<string>();
 
   public textInput = '';
 
-  public constructor(private backendService: BackendService) {}
+  public constructor(private backendService: BackendService,
+                     private chatService: ChatService,
+                     private authenticationService: AuthenticationService) {}
 
   public ngOnInit() {
+    this.isUserAFriend = this.authenticationService.isFriend();
     this.loadChat();
-    setInterval(() => {
-      this.loadChat();
-    }, 10000);
   }
 
   public loadChat() {
     this.backendService.getChat(this.chatId)
     .subscribe((chat: IChat) => {
-      this.chat = chat;
-      this.messages = this.chat.messages;
+      if (chat) {
+        this.chat = chat;
+        this.messages = this.chat.messages;
+        setInterval(() => {
+          this.loadChat();
+        }, 10000);
+
+      } else {
+
+        this.chatService.createChat(this.chatId);
+      }
     });
   }
 
-  sendTextInput() {
+  public answer(gegebeneAntwort) {
+    this.isUserAFriend = this.authenticationService.isFriend(gegebeneAntwort);
+  }
+
+  public sendTextInput() {
     if (this.textInput.length > 1) {
 
       const newMessage = {

@@ -1,32 +1,25 @@
 <app-navbar></app-navbar>
 
-<div *ngIf="mode === 'specific'" class="fancyChat">
-  <app-fancy-chat-box
-    [chatId]=chatId
-  ></app-fancy-chat-box>
-</div>
-
-<div *ngIf="mode !== 'specific' && infoToUser!==''"  class="container">
-<h3 class="title">
+<div *ngIf="infoToUser !== ''" class="container">
+  <h3 class="title">
     {{ infoToUser }}
   </h3>
 </div>
+<div *ngIf="this.infoToUser === ''" class="container">
+  <h3 class="title">Fancy Chats</h3>
+  <p><br /></p>
 
-<div *ngIf="mode === 'common' && this.infoToUser === ''" class="container">
-  <h3 class="title">Fancy Chats<br /></h3>
-
-  <h5 class="infoToUser">
-    Was möchtes Du tun?
-  </h5>
-<p><br></p>
-  <button (click)="createChat()">
-    Einen Chat anlegen
-  </button>
-  <p><br></p>
-  <a target="_blank" href="https://dance-planner.de">
-    <button>
-      Fancy Events finden
+    <h5 class="infoToUser">
+      Was möchtes Du tun?
+    </h5>
+    <p><br /></p>
+    <button (click)="createChat()">
+      Einen Chat anlegen
     </button>
-  </a>
-
+    <p><br /></p>
+    <a target="_blank" href="https://dance-planner.de">
+      <button>
+        Fancy Events finden
+      </button>
+    </a>
 </div>

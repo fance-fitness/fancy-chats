@@ -18,12 +18,12 @@
   .input-message {
     border-top: 2px solid grey;
     height: 12%;
+    width: 100%
   }
 
   .input-text-message {
     padding-top: 1em;
     padding-left: 0.85em;
-    border-left: 2px solid grey;
     height: 100%;
     width: 80%;
   }
