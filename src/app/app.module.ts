@@ -16,7 +16,6 @@ import { ContactComponent } from './contact/contact.component';
 import { ModalModule } from 'angular-custom-modal';
 import { AdminComponent } from './admin/admin.component';
 import { FancyChatBoxComponent } from './fancy-chat-box/fancy-chat-box.component';
-import { FancyChatMessageComponent } from './fancy-chat-message/fancy-chat-message.component';
 import { TypingAreaComponent } from './typing-area/typing-area.component';
 import { SpecificComponent } from './specific/specific.component';
 
@@ -31,7 +30,6 @@ import { SpecificComponent } from './specific/specific.component';
     ContactComponent,
     AdminComponent,
     FancyChatBoxComponent,
-    FancyChatMessageComponent,
     TypingAreaComponent,
     SpecificComponent,
   ],

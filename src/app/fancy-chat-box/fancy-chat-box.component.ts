@@ -23,8 +23,8 @@ export class FancyChatBoxComponent implements OnInit {
   public colorFontRight = 'white';
   public colorBackLeft = '#333';
   public colorFontLeft = 'white';
-  public width = '90%';
-  public height = '500px';
+  public width = '100%';
+  public height = '450px';
   public border = '1px solid black';
   public isUserAFriend = false;
   public gegebeneAntwort = '';
@@ -43,6 +43,9 @@ export class FancyChatBoxComponent implements OnInit {
     this.loadChat();
   }
 
+  public getChatLink() {
+    return `${BackendService.frontendURL}?chatId=${this.chatId}`;
+  }
   public loadChat() {
     this.backendService.getChat(this.chatId)
     .subscribe((chat: IChat) => {
@@ -51,7 +54,7 @@ export class FancyChatBoxComponent implements OnInit {
         this.messages = this.chat.messages;
         setInterval(() => {
           this.loadChat();
-        }, 10000);
+        }, 30000);
 
       } else {
 

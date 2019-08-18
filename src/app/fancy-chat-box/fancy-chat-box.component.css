@@ -1,19 +1,7 @@
   .list-messages {
-    display: flex;
-    flex-direction: column;
     height: 88%;
+    width: 100%;
     overflow: auto;
-  }
-  .left-message {
-    display: flex;
-    margin-top: 3px;
-    margin-left: 10px;
-  }
-  .right-message {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 4px;
-    margin-right: 10px;
   }
   .input-message {
     border-top: 2px solid grey;

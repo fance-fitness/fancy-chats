@@ -8,28 +8,31 @@
 />
 
 <div *ngIf="isUserAFriend">
-  <a href="">https://fancy-chats.com?chatId={{ chatId }}</a>
+  <br />
+  Mit diesem Link kannst Du Freunde einladen: <br />
+  <a href="{{ getChatLink() }}">{{ getChatLink() }}</a>
+  <p></p>
   <!-- Bitte halte Dich an die <a target="_blank" href="">Regeln</a>  dieser Plattform. -->
-  <div
-    [ngStyle]="{ width: width, height: height, border: border }"
-    style="align-items: center; margin-left: 1.2em"
-  >
+  <div [ngStyle]="{ width: width, height: height, border: border }">
     <div class="list-messages">
       <div *ngFor="let message of messages">
-        <app-fancy-chat-message
-          class="message"
-          [text]="message.text"
-          [date]="message.date"
-          [colorBackRight]="colorBackRight"
-          [colorFontRight]="colorFontRight"
-          [colorBackLeft]="colorBackLeft"
-          [colorFontLeft]="colorFontLeft"
-          [owner]="message.userOwner"
-          [ngClass]="{
-            'left-message': !message.userOwner,
-            'right-message': message.userOwner
-          }"
-        ></app-fancy-chat-message>
+        {{messages.indexOf(message)}}
+
+        <div>
+          <p></p>
+          <span *ngIf="messages.indexOf(message)%2===0" style="background-color: #333; color: white; padding: 1em">
+            {{ message.text }}
+          </span>
+          <span *ngIf="messages.indexOf(message)%2===1" style="background-color: #ff0066; color: white; padding: 1em">
+              {{ message.text }}
+            </span>
+
+          <br />
+          <div style="margin-top: 1em">
+              {{ message.date }}
+          </div>
+          <p></p>
+        </div>
       </div>
     </div>
     <div *ngIf="chat" class="input-message">
