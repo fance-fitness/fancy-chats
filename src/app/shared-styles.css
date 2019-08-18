@@ -1,6 +1,6 @@
 .fancyChat{
   margin: auto;
-  padding-top: 7em;
+  padding-top: 5em;
   padding-left: 10%
 }
 
@@ -26,18 +26,6 @@
 .infoToUser {
   padding-top: 2em
 }
-.myPopup {
-  margin-top: 4%;
-  background-color: #333;
-  min-width: 100%
-}
-
-
-  @media screen and (max-width: 600px) {
-    .myPopup {
-      margin-top: 100%;
-    }
-  }
 
 a, h1, h2, h3, h4, h5, h6 {
   /* These are technically the same, but use both */
@@ -48,7 +36,7 @@ a, h1, h2, h3, h4, h5, h6 {
 
 .container {
   text-align: center;
-  padding-top: 5em
+  padding-top: 4em
 }
 
 input {
@@ -121,8 +109,8 @@ input {
     border: solid #000;
     border-width: 1 10px;
     border-color: #ff0066;
-    padding-left: 2.5%;
-    padding-right: 2.5%;
+    /* padding-left: 2.5%;
+    padding-right: 2.5%; */
     text-align: center
   }
 

@@ -1,6 +1,3 @@
-.chat-container {
-    padding-top: 15px;
-  }
   .list-messages {
     display: flex;
     flex-direction: column;
@@ -9,11 +6,13 @@
   }
   .left-message {
     display: flex;
+    margin-top: 3px;
     margin-left: 10px;
   }
   .right-message {
     display: flex;
     justify-content: flex-end;
+    margin-top: 4px;
     margin-right: 10px;
   }
   .input-message {

@@ -10,13 +10,15 @@ import * as moment from 'moment';
 })
 export class FancyChatBoxComponent implements OnInit {
   @Input() messages: any[];
-  @Input() colorBackRight;
-  @Input() colorFontRight;
-  @Input() colorBackLeft;
-  @Input() colorFontLeft;
-  @Input() width;
-  @Input() height;
-  @Input() border;
+
+  public colorBackRight = '#333';
+  public colorFontRight = 'white';
+  public colorBackLeft = '#333';
+  public colorFontLeft = 'white';
+  public width = '90%';
+  public height = '500px';
+  public border = '1px solid black';
+
   @Input() chatId;
 
   public chat: IChat;

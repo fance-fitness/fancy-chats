@@ -3,15 +3,17 @@
         {{text}}
     </p>
     <br>
-    {{date}}
+    <span class="fancy-date-info-right">
+      {{date}}
+    </span>
     <p><br></p>
   </div>
-<div *ngIf="!owner" class="content-message left-content">
+  <div *ngIf="!owner" class="content-message left-content">
     <p><br></p>
     <p [ngStyle]="{'background-color': colorBackLeft, 'color': colorFontLeft}" class="fancy-text-left">
-        {{text}}
-      </p>
-      <br>
+      {{text}}
+    </p>
+    <br>
     <span class="fancy-date-info-left">
       {{date}}
     </span>
