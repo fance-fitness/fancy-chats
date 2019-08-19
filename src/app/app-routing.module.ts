@@ -3,13 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ContactComponent } from './contact/contact.component';
 import { AdminComponent } from './admin/admin.component';
-import { SpecificComponent } from './specific/specific.component';
 
 const routes: Routes = [
 
     { path: 'contact', component: ContactComponent },
     { path: 'admin', component: AdminComponent },
-    { path: 'specific', component: SpecificComponent },
+    // { path: 'specific', component: SpecificComponent },
     { path: '', component: LandingPageComponent }
 ];
 

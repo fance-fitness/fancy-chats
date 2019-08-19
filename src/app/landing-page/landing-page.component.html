@@ -5,7 +5,7 @@
     {{ infoToUser }}
   </h3>
 </div>
-<div *ngIf="this.infoToUser === ''" class="container">
+<div *ngIf="!showSpecific && this.infoToUser === ''" class="container">
   <h3 class="title">Fancy Chats</h3>
   <p><br /></p>
 
@@ -22,4 +22,37 @@
         Fancy Events finden
       </button>
     </a>
+</div>
+
+
+<div *ngIf="showSpecific" class="container">
+  <div *ngIf="isUserAFriend === false">
+    <h3 class="title">Fancy Chats</h3>
+    <p><br /></p>
+
+    Dieser Service steht momentan lediglich für meinen Freundeskreis zur
+    Verfügung.
+    <p></p>
+    <br />
+    Bitte beantworte daher die folgende Frage: <br />
+    Wie lautet das neue fancy Fitnesstraining aus Heidelberg?
+    <p></p>
+    <br />
+    <input
+      type="text"
+      [(ngModel)]="gegebeneAntwort"
+      class="dance-input"
+      autofocus
+    />
+    <p></p>
+
+    <button *ngIf="gegebeneAntwort !== ''" (click)="answer(gegebeneAntwort)">
+      Go
+      <!-- Ich bin Dein Freund :) -->
+    </button>
+  </div>
+
+  <div *ngIf="isUserAFriend === true && chatId">
+    <app-fancy-chat-box [chatId]="chatId"></app-fancy-chat-box>
+  </div>
 </div>
