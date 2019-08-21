@@ -54,12 +54,22 @@ export class FancyChatBoxComponent implements OnInit {
           this.createNewChatWithThisId();
         } else {
           this.chat = chat;
+          setTimeout(() => {
+            this.scrollToBottom();
+          }, 1000);
         }
       },
       error => {
         alert('Etwas hat nicht ganz funktioniert.');
       }
     );
+  }
+
+  private scrollToBottom() {
+    const objDiv = document.getElementById('melissa');
+    objDiv.scrollTop = objDiv.scrollHeight;
+    document.body.scrollTop = document.body.scrollHeight;
+    document.documentElement.scrollTop = document.body.scrollHeight;
   }
 
   public createNewChatWithThisId(): any {
@@ -120,6 +130,7 @@ export class FancyChatBoxComponent implements OnInit {
 
       this.backendService.addMessage(chatForUpdate).subscribe(result => {
         if (result.success) {
+          this.scrollToBottom();
           // alert('Geilo. Das hat geklappt.');
         } else {
           alert('Etwas ist schiefgelaufen.');
