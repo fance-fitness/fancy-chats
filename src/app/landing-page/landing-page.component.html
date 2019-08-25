@@ -9,10 +9,75 @@
   <h3 class="title">Fancy Chats</h3>
   <p><br /></p>
 
-    <h5 class="infoToUser">
-      Was möchtes Du tun?
-    </h5>
+  <div *ngIf="chatClient === ''">
+    Hier kannst Du einen fancy Link zu deiner WhatsApp Gruppe und zu Deiner
+    Telegram Gruppe generieren.
     <p><br /></p>
+    <button (click)="setChatClient('WhatsApp')">
+      Fancy Link für WhatsApp
+    </button>
+
+    <p></p>
+    <button (click)="setChatClient('Telegram')">
+      Fancy Link für Telegram
+    </button>
+  </div>
+
+  <p><br /></p>
+  <div *ngIf="yourFancyLink === ''">
+    <div *ngIf="chatClient === 'WhatsApp'">
+      <label for="whatsAppGroupInvitationLink"
+        >Wie lautet Dein WhatsApp Einladungslink?</label
+      >
+      <input
+        type="text"
+        id="whatsAppGroupName"
+        class="dance-input"
+        [(ngModel)]="whatsAppGroupInvitationLink"
+        autofocus
+      />
+
+      <p><br /></p>
+      <button (click)="generateFancyLinkForWhatsApp()">
+        Fancy Einladungslink generieren
+      </button>
+
+    </div>
+    <div *ngIf="chatClient === 'Telegram'">
+      <label for="whatsAppGroupInvitationLink">Wie lautet Dein Telegram Einladungslink?</label>
+      <input
+        type="text"
+        id="telegramGroupName"
+        class="dance-input"
+        [(ngModel)]="telegramGroupInvitationLink"
+        autofocus
+      />
+
+      <p><br /></p>
+      <button (click)="generateFancyLinkForTelegram()">
+        Fancy Einladungslink generieren
+      </button>
+
+    </div>
+
+  </div>
+  <!--
+    https://chat.whatsapp.com/Epx3YNiXdrFC0dYHF6BnA8
+
+    https://t.me/joinchat/CocyExMoez7jkeQ72Tc2OQ
+  -->
+  <div *ngIf="yourFancyLink !== ''">
+    <p></p>
+    Hier ist der fancy Einladungslink zu Deiner {{chatClient}} Gruppe:
+    <p></p>
+    <b
+      ><a href="{{ yourFancyLink }}">{{ yourFancyLink }}</a></b
+    >
+    <p><br /></p>
+  </div>
+  <!-- <label for="yourFancyLink">Dein Fancy Einladungslink</label>
+    <input type="text" id="yourFancyLink" class="dance-input" [(ngModel)]="yourFancyLink">
+
     <button (click)="createChatFromLandingPage()">
       Einen Chat anlegen
     </button>
@@ -21,9 +86,8 @@
       <button>
         Fancy Events finden
       </button>
-    </a>
+    </a> -->
 </div>
-
 
 <div *ngIf="showSpecific" class="container">
   <div *ngIf="isUserAFriend === false">

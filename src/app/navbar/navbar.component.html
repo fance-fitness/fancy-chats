@@ -2,7 +2,7 @@
 
 <div class="topnav" id="myTopnav">
   <a class="active titletext" style="font-size: 21px" (click)="clickTitle()">{{texts.info.longTitleOfTheApp}}</a>
-  <a (click)="clickSearch()" class="active" style="font-size: 21px">Chat anlegen</a>
+  <!-- <a (click)="clickSearch()" class="active" style="font-size: 21px">Chat anlegen</a> -->
   <a *ngIf='router.url!=="/contact"' (click)="clickContact()" style="font-size: 21px">{{texts.info.contact}}</a>
   <a class="icon" (click)="myFunction()" style="font-size:21px">
     <i class="fa fa-bars"></i>

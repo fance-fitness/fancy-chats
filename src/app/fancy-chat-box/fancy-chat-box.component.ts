@@ -29,6 +29,7 @@ export class FancyChatBoxComponent implements OnInit {
   public chat: IChat;
 
   public textInput = '';
+  public event: IEvent;
 
   public constructor(
     private backendService: BackendService,
@@ -47,22 +48,29 @@ export class FancyChatBoxComponent implements OnInit {
     return `${BackendService.frontendChatURL}?chatId=${this.chatId}`;
   }
 
-  public loadChat() {
+  public handleLoadedChat(chat) {
+
+    if (chat === undefined || chat === null) {
+      this.createNewChatWithThisId();
+    } else {
+      this.chat = chat;
+      setTimeout(() => {
+        this.scrollToBottom();
+      }, 1000);
+    }
+  }
+
+  public handleErrorWhileLoadingChat() {
+    BackendService.backendURL = BackendService.planBBackendURL;
     this.backendService.getChat(this.chatId).subscribe(
-      (chat: IChat) => {
-        if (chat === undefined || chat === null) {
-          this.createNewChatWithThisId();
-        } else {
-          this.chat = chat;
-          setTimeout(() => {
-            this.scrollToBottom();
-          }, 1000);
-        }
-      },
-      error => {
-        alert('Etwas hat nicht ganz funktioniert.');
-      }
-    );
+      (chat: IChat) => this.handleLoadedChat(chat));
+  }
+
+  public loadChat() {
+    alert('hier gibts action');
+    this.backendService.getChat(this.chatId).subscribe(
+      (chat: IChat) => this.handleLoadedChat(chat),
+      error => this.handleErrorWhileLoadingChat());
   }
 
   private scrollToBottom() {
@@ -72,43 +80,53 @@ export class FancyChatBoxComponent implements OnInit {
     document.documentElement.scrollTop = document.body.scrollHeight;
   }
 
+  public handleEventsAndCreateChat(events) {
+    alert('hahi');
+    let welcomeMessage: IMessage;
+    this.event = events.filter((entry: IEvent) => entry.id === this.chatId)[0];
+    alert('haha');
+    if (this.event) {
+      welcomeMessage = {
+        text: `Willkommen im Chat zu ${this.event.dance} in ${this.event.location} am ${this.event.date} mit der ID: ${
+          this.chatId
+        }. Liebe Grüße vom fancy Administrator.`,
+        date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+        userOwner: true
+      };
+    } else {
+      welcomeMessage = {
+        text: `Willkommen im Chat. Liebe Grüße vom fancy Administrator.`,
+        date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+        userOwner: true
+      };
+    }
+
+    this.chat = {
+      id: this.chatId,
+      messages: [welcomeMessage],
+      reportedBecause: ''
+    };
+
+    this.backendService.createChat(this.chat).subscribe(result => {
+      if (result.success) {
+        // no need for action
+      } else {
+        alert('Etwas ist schiefgelaufen.');
+      }
+    });
+  }
+
+  public handleErrorWhileGettingEvents(error) {
+    console.log(error.message);
+    BackendService.backendURL = BackendService.planBBackendURL;
+    this.backendService.getEvents().subscribe(
+      (events: IEvent[]) => this.handleEventsAndCreateChat(events));
+  }
+
   public createNewChatWithThisId(): any {
     this.backendService.getEvents().subscribe(
-      (events: IEvent[]) => {
-        let welcomeMessage: IMessage;
-        if (events.filter((entry: IEvent) => entry.id === this.chatId)[0]) {
-          welcomeMessage = {
-            text: `Willkommen im Chat zum Event mit der ID: ${
-              this.chatId
-            }. Liebe Grüße vom fancy Administrator.`,
-            date: moment().format('MMMM Do YYYY, h:mm:ss a'),
-            userOwner: true
-          };
-        } else {
-          welcomeMessage = {
-            text: `Willkommen im Chat. Liebe Grüße vom fancy Administrator.`,
-            date: moment().format('MMMM Do YYYY, h:mm:ss a'),
-            userOwner: true
-          };
-        }
-
-        this.chat = {
-          id: this.chatId,
-          messages: [welcomeMessage],
-          reportedBecause: ''
-        };
-
-        this.backendService.createChat(this.chat).subscribe(result => {
-          if (result.success) {
-            // no need for action
-          } else {
-            alert('Etwas ist schiefgelaufen.');
-          }
-        });
-      },
-      error => {
-        alert('Etwas hat nicht ganz funktioniert.');
-      }
+      (events: IEvent[]) => this.handleEventsAndCreateChat(events),
+      error => this.handleErrorWhileGettingEvents(error)
     );
   }
 
@@ -135,7 +153,8 @@ export class FancyChatBoxComponent implements OnInit {
         } else {
           alert('Etwas ist schiefgelaufen.');
         }
-      });
+      },
+      error => alert('Etwas ist schiefgelaufen. Bitte probiere es in 2 Stunden nochmal.'));
       this.textInput = '';
     }
   }
