@@ -26,7 +26,7 @@
     "bootstrap": "4.1.1",
     "core-js": "^2.5.4",
     "geo-distance-js": "^1.0.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "nanoid": "^2.0.3",
     "ngx-bootstrap": "^5.1.0",
     "rxjs": "~6.3.3",
